@@ -1,26 +1,15 @@
-const express = require("express")
+const express = require('express')
 
-const app = express();
+const app = express()
+app.use(express.json())
 
+app.post('/users', (request, response) => {
+  
 
-
-app.get("/message/:id/:user", (request, response) => {
-const{id, user} = request.params
-
-response.send(
-   
-   `
-   ID da mensagem: ${id}.
-   Para o usuário: ${user}.
-   
-   `)
-
-})
-
-app.get("/users", (request, response) => {
-const{page, limit} = request.query;
-
-response.send(`Página: ${page}. Mostrar: ${limit}`)
+  
+  const { name, email, password } = request.body
+  
+response.json({name, email, password})
 
 })
 
