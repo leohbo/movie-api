@@ -1,13 +1,13 @@
 {
   "name": "movie-api",
   "version": "1.0.0",
-  "description": "API desenvolvida no Explorer da Rocketseat - Desafio stage 08.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+     "start": "node ./src/server.js"
   },
   "author": "Leonardo Oliveira",
   "license": "ISC",
+  "description": "API desenvolvida no Explorer da Rocketseat - Desafio stage 08.",
   "dependencies": {
     "express": "^4.21.2"
   }
