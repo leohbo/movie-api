@@ -83,10 +83,21 @@ async index(request, response) {
 
   }
 
+const userTags = await knex("movie_tags").where({user_id})
+const userWithTags = notes.map(note => {
+const noteTags = userTags.filter(tag => tag.note_id === note.id)
 
+return {
+  ...note,
+  note: noteTags,
+}
+
+
+})
   
 
-    return response.json(notes)
+    return response.json(userWithTags)
+    
 
   }
 }
