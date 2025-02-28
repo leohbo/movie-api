@@ -56,16 +56,28 @@ return response.json();
 
 async index(request, response) {
 
-const {title, tags} = request.query;
+    const { title, user_id, tags } = request.query;
 
-const notes = await knex("notes")
-.where({user_id})
-.orderBy("title")
+  let notes;
 
-return response.json(notes);
+  if(tags) {
+  const filterTags = tags.split(',').map(tag => tag.trim());
+  
+  notes = await knex("movie_tags")
+  .whereIn("name", filterTags)
+  
+  } else {
 
-}
+    notes = await knex("movie_notes")
+    .where({ user_id })
+    .whereLike("title", `%${title}%`)
+    .orderBy("title")
 
+  }
+
+    return response.json(notes)
+
+  }
 }
 
 module.exports = NotesController;
